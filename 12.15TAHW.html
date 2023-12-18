@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+<script>
+    // Function to add two numbers
+    function add(x, y) {
+        return x + y;
+    }
+
+    // Function to subtract two numbers
+    function subtract(x, y) {
+        return x - y;
+    }
+
+    // Function to multiply two numbers
+    function multiply(x, y) {
+        return x * y;
+    }
+
+    // Function to divide two numbers
+    function divide(x, y) {
+        if (y !== 0) {
+            return x / y;
+        } else {
+            return "Error: Division by zero";
+        }
+    }
+
+    // Function to get user input and perform calculations
+    function calculate() {
+        var num1;
+        var num2;
+        var validInput = false;
+
+        // Validate and get the first number
+        while (!validInput) {
+            var input1 = prompt("Enter the first number:");
+            if (input1 === null) {
+                return; // Handle cancel button
+            }
+            num1 = parseFloat(input1);
+            validInput = !isNaN(num1);
+            if (!validInput) {
+                alert("Invalid input. Please enter a valid number.");
+            }
+        }
+
+        validInput = false;
+
+        // Validate and get the operation
+        var operator;
+        while (!validInput) {
+            operator = prompt("Enter the operation (+, -, *, /):");
+            if (operator === null) {
+                return; // Handle cancel button
+            }
+            validInput = (operator === '+' || operator === '-' || operator === '*' || operator === '/');
+            if (!validInput) {
+                alert("Invalid operation. Please enter a valid operation.");
+            }
+        }
+
+        validInput = false;
+
+        // Validate and get the second number
+        while (!validInput) {
+            var input2 = prompt("Enter the second number:");
+            if (input2 === null) {
+                return; // Handle cancel button
+            }
+            num2 = parseFloat(input2);
+            validInput = !isNaN(num2);
+            if (!validInput) {
+                alert("Invalid input. Please enter a valid number.");
+            }
+        }
+
+        // Perform calculation based on the operator
+        switch (operator) {
+            case '+':
+                alert("Result: " + add(num1, num2));
+                break;
+            case '-':
+                alert("Result: " + subtract(num1, num2));
+                break;
+            case '*':
+                alert("Result: " + multiply(num1, num2));
+                break;
+            case '/':
+                alert("Result: " + divide(num1, num2));
+                break;
+            default:
+                alert("Invalid operation");
+        }
+    }
+
+    // Loop to allow the user to perform multiple calculations
+    while (true) {
+        calculate();
+        var continueCalculation = prompt("Do you want to perform another calculation? (yes/no)");
+        if (continueCalculation.toLowerCase() !== 'yes') {
+            break;
+        }
+    }
+</script>
+
+</body>
+</html>
